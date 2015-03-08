@@ -1,0 +1,8 @@
+setwd=("C:/Users/Sarabraj/OneDrive/Programming/R/exdata")
+mydata <- read.csv("household_power_consumption.txt", header = TRUE, na.strings="?", sep=";")
+mydata$Date <- as.Date(mydata$Date, format="%d/%m/%Y")
+subset <- subset(mydata, subset = (Date >= "2007-02-01" & Date <= "2007-02-02"))
+subset$Global_active_power <- as.numeric(as.character(subset$Global_active_power))
+hist(subset$Global_active_power, main = "Global Active Power", xlab = "Global Reactive Power (Kilowatts)", ylab = "Frequency", col = "Red")
+dev.copy(png, file = "plot1.png", height = 480, width = 480)
+dev.off()
